@@ -11,7 +11,7 @@ namespace OwinMonoDocker
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
-            : base("MyDatabase")
+            : base("MonkeyFist")
         {
         }
         public IDbSet<Company> Companies { get; set; }
