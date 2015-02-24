@@ -11,21 +11,20 @@ namespace OwinMonoDocker
     public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext()
-            : base("MonkeyFist")
+            : base("myMysqldb")
         {
         }
-        public IDbSet<Company> Companies { get; set; }
+        public IDbSet<Customer> Customers { get; set; }
     }
-
-
+    
     public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {
             base.Seed(context);
-            context.Companies.Add(new Company { Name = "Microsoft" });
-            context.Companies.Add(new Company { Name = "Google" });
-            context.Companies.Add(new Company { Name = "Apple" });
+            context.Customers.Add(new Customer { Name = "Microsoft" });
+            context.Customers.Add(new Customer { Name = "Google" });
+            context.Customers.Add(new Customer { Name = "Apple" });
         }
     }
 }

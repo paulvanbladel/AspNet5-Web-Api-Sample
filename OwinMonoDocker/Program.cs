@@ -12,21 +12,14 @@ namespace OwinMonoDocker
     {
         static void Main(string[] args)
         {
-
-            // Set up and seed the database:
-            Console.WriteLine("Initializing and seeding database...");
-            Database.SetInitializer(new ApplicationDbInitializer());
-            var db = new ApplicationDbContext();
-            int count = db.Companies.Count();
-            Console.WriteLine("Initializing and seeding database with {0} company records...", count);
- 
-
-            // Specify the URI to use for the local host:
-            string baseUri = "http://127.0.0.1:8080";
+            //string baseUri = "http://*:8080";
+            // in debug in visual studio you will need 
+            string baseUri = "http://localhost:8080";
 
             Console.WriteLine("Starting web Server...");
             WebApp.Start<Startup>(baseUri);
             Console.WriteLine("Server running at {0} - press Enter to quit. ", baseUri);
+            Console.WriteLine("I'm running on {0} directly from assembly {1}", Environment.OSVersion, System.Reflection.Assembly.GetEntryAssembly().FullName);
             Console.ReadLine();
         }
     }

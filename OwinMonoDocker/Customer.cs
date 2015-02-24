@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OwinMonoDocker
 {
-    public class Company
+    public class Customer
     {
         public int Id { get; set; }
         public string Name { get; set; }

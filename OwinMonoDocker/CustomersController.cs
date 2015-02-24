@@ -3,82 +3,81 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-// Add these usings:
 using System.Web.Http;
 using System.Net.Http;
 using OwinMonoDocker;
 using System.Data.Entity;
 
-namespace MinimalOwinWebApiSelfHost.Controllers
+namespace OwinMonoDocker
 {
-    public class CompaniesController : ApiController
+    public class CustomersController : ApiController
     {
         ApplicationDbContext _Db = new ApplicationDbContext();
 
         [HttpGet]
-        [Route("api/Companies/CreateRecord")]
-        public async Task<IHttpActionResult> CreateRecord()
+        [Route("api/Customers/MimicCustomerImport/{numberOfRecords}")]
+        public async Task<IHttpActionResult> MimicCustomerImport(int numberOfRecords)
         {
-            _Db.Companies.Add(new Company { Name = DateTime.Now.ToShortTimeString() });
+            for (int i = 0; i < numberOfRecords; i++)
+            {
+                _Db.Customers.Add(new Customer { Name = DateTime.Now.ToShortTimeString() + " " + i });    
+            }
             await _Db.SaveChangesAsync();
             return Ok();
-
         }
 
         
-        
-        public IEnumerable<Company> Get()
+        public IEnumerable<Customer> Get()
         {
-            return _Db.Companies;
+            return _Db.Customers;
         }
 
 
-        public async Task<Company> Get(int id)
+        public async Task<Customer> Get(int id)
         {
-            var company = await _Db.Companies.FirstOrDefaultAsync(c => c.Id == id);
-            if (company == null)
+            var customer = await _Db.Customers.FirstOrDefaultAsync(c => c.Id == id);
+            if (customer == null)
             {
                 throw new HttpResponseException(
                     System.Net.HttpStatusCode.NotFound);
             }
-            return company;
+            return customer;
         }
 
 
-        public async Task<IHttpActionResult> Post(Company company)
+        public async Task<IHttpActionResult> Post(Customer customer)
         {
-            if (company == null)
+            if (customer == null)
             {
-                return BadRequest("Argument Null");
+                return BadRequest("No customer data provided");
             }
-            var companyExists = await _Db.Companies.AnyAsync(c => c.Id == company.Id);
+            var customerExists = await _Db.Customers.AnyAsync(c => c.Id == customer.Id);
 
-            if (companyExists)
+            if (customerExists)
             {
                 return BadRequest("Exists");
             }
 
-            _Db.Companies.Add(company);
+            _Db.Customers.Add(customer);
             await _Db.SaveChangesAsync();
             return Ok();
         }
 
 
-        public async Task<IHttpActionResult> Put(Company company)
+        public async Task<IHttpActionResult> Put(Customer customer)
         {
-            if (company == null)
+            if (customer == null)
             {
-                return BadRequest("Argument Null");
+                return BadRequest("No customer data provided");
             }
-            var existing = await _Db.Companies.FirstOrDefaultAsync(c => c.Id == company.Id);
+            var existing = await _Db.Customers.FirstOrDefaultAsync(c => c.Id == customer.Id);
 
             if (existing == null)
             {
                 return NotFound();
             }
 
-            existing.Name = company.Name;
+            existing.Name = customer.Name;
             await _Db.SaveChangesAsync();
             return Ok();
         }
@@ -86,12 +85,12 @@ namespace MinimalOwinWebApiSelfHost.Controllers
 
         public async Task<IHttpActionResult> Delete(int id)
         {
-            var company = await _Db.Companies.FirstOrDefaultAsync(c => c.Id == id);
-            if (company == null)
+            var customer = await _Db.Customers.FirstOrDefaultAsync(c => c.Id == id);
+            if (customer == null)
             {
                 return NotFound();
             }
-            _Db.Companies.Remove(company);
+            _Db.Customers.Remove(customer);
             await _Db.SaveChangesAsync();
             return Ok();
         }
