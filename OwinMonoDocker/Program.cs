@@ -22,7 +22,7 @@ namespace OwinMonoDocker
  
 
             // Specify the URI to use for the local host:
-            string baseUri = "http://localhost:8080";
+            string baseUri = "http://127.0.0.1:8080";
 
             Console.WriteLine("Starting web Server...");
             WebApp.Start<Startup>(baseUri);
