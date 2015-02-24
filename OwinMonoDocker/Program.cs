@@ -12,9 +12,9 @@ namespace OwinMonoDocker
     {
         static void Main(string[] args)
         {
-            //string baseUri = "http://*:8080";
+            string baseUri = "http://*:8080";
             // in debug in visual studio you will need 
-            string baseUri = "http://localhost:8080";
+            //string baseUri = "http://localhost:8080";
 
             Console.WriteLine("Starting web Server...");
             WebApp.Start<Startup>(baseUri);
