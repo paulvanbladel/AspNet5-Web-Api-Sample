@@ -19,15 +19,15 @@ namespace Web_Api_Sample
         public void ConfigureServices(IServiceCollection services)
         {
             //var connection = @"Server=(localdb)\mssqllocaldb;Database=WestWind;Trusted_Connection=True;";
-            //var connection = "Data Source=f:\\temp2.sqlite" ;  //in case you want to sqlite !!!
+            var connection = "Data Source=/repos/Web-Api-Sample/src/Web-Api-Sample/temp2.sqlite";  //in case you want to sqlite !!!
             services
                 .AddEntityFramework()
-                .AddInMemoryDatabase()
+                //.AddInMemoryDatabase()
             //    .AddSqlServer()
-            //    .AddSqlite() //in case you want to sqlite !!!
+                .AddSqlite() //in case you want to sqlite !!!
             //    .AddDbContext<WestWindContext>(options => options.UseSqlServer(connection));
-            //    .AddDbContext<WestWindContext>(options => options.UseSqlite(connection)); //in case you want to sqlite !!!
-                .AddDbContext<WestWindContext>(options => options.UseInMemoryDatabase(true)); //in case you want to sqlite !!!
+                .AddDbContext<WestWindContext>(options => options.UseSqlite(connection)); //in case you want to sqlite !!!
+            //    .AddDbContext<WestWindContext>(options => options.UseInMemoryDatabase(true)); //in case you want to sqlite !!!
 
 
             services //no idea want this line can't be added to previous ??
