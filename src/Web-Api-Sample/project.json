@@ -1,0 +1,44 @@
+{
+  "webroot": "wwwroot",
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "EntityFramework.Commands": "7.0.0-beta7",
+    "EntityFramework.Core": "7.0.0-beta7",
+    "EntityFramework.InMemory": "7.0.0-beta7",
+    "EntityFramework.Sqlite": "7.0.0-beta7",
+    "EntityFramework.SqlServer": "7.0.0-beta7",
+    "Microsoft.AspNet.Mvc": "6.0.0-beta7",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-beta7",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta7",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta7"
+  },
+
+  "commands": {
+    "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+    "ef": "EntityFramework.Commands",
+    "Kestrel": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.Kestrel --server.urls http://localhost:5000"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "frameworkAssemblies": {
+      }
+    },
+    "dnxcore50": { }
+  },
+
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ],
+  "publishExclude": [
+    "node_modules",
+    "bower_components",
+    "**.xproj",
+    "**.user",
+    "**.vspscc"
+  ]
+}

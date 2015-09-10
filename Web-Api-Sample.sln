@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3427C4A3-CDC7-41B8-BCDF-A41955D68C1B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0C90E002-A144-4EC2-B118-C4C5813DDE07}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web-Api-Sample", "src\Web-Api-Sample\Web-Api-Sample.xproj", "{D33E05D2-F157-4863-B9A0-4E7BEE72C02A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D33E05D2-F157-4863-B9A0-4E7BEE72C02A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D33E05D2-F157-4863-B9A0-4E7BEE72C02A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D33E05D2-F157-4863-B9A0-4E7BEE72C02A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D33E05D2-F157-4863-B9A0-4E7BEE72C02A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D33E05D2-F157-4863-B9A0-4E7BEE72C02A} = {3427C4A3-CDC7-41B8-BCDF-A41955D68C1B}
+	EndGlobalSection
+EndGlobal
