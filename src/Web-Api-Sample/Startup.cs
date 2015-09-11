@@ -7,7 +7,8 @@ using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Data.Entity;
 using Web_Api_Sample.Models;
-
+using Microsoft.Dnx.Runtime;
+using Microsoft.Dnx.Runtime.Infrastructure;
 namespace Web_Api_Sample
 {
     public class Startup
@@ -18,18 +19,15 @@ namespace Web_Api_Sample
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //var connection = @"Server=(localdb)\mssqllocaldb;Database=WestWind;Trusted_Connection=True;";
-            var connection = "Data Source=/repos/Web-Api-Sample/src/Web-Api-Sample/temp2.sqlite";  //in case you want to sqlite !!!
+            var appEnv = CallContextServiceLocator.Locator.ServiceProvider.GetRequiredService<IApplicationEnvironment>();
+            var databaseName = "database.sqlite3";
+            var connection = $"Data Source={ appEnv.ApplicationBasePath}/{databaseName}";
+
             services
                 .AddEntityFramework()
-                //.AddInMemoryDatabase()
-            //    .AddSqlServer()
-                .AddSqlite() //in case you want to sqlite !!!
-            //    .AddDbContext<WestWindContext>(options => options.UseSqlServer(connection));
-                .AddDbContext<WestWindContext>(options => options.UseSqlite(connection)); //in case you want to sqlite !!!
-            //    .AddDbContext<WestWindContext>(options => options.UseInMemoryDatabase(true)); //in case you want to sqlite !!!
-
-
+                .AddSqlite()
+            
+                .AddDbContext<WestWindContext>(options => options.UseSqlite(connection)); 
             services //no idea want this line can't be added to previous ??
                 .AddMvc()
                 .AddJsonOptions(options =>
