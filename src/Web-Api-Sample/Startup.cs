@@ -9,6 +9,11 @@ using Microsoft.Data.Entity;
 using Web_Api_Sample.Models;
 using Microsoft.Dnx.Runtime;
 using Microsoft.Dnx.Runtime.Infrastructure;
+using Swashbuckle.Application;
+using Swashbuckle.Swagger.Annotations;
+using Swashbuckle.Swagger.XmlComments;
+
+
 namespace Web_Api_Sample
 {
     public class Startup
@@ -26,7 +31,7 @@ namespace Web_Api_Sample
             services
                 .AddEntityFramework()
                 .AddSqlite()
-            
+                
                 .AddDbContext<WestWindContext>(options => options.UseSqlite(connection)); 
             services //no idea want this line can't be added to previous ??
                 .AddMvc()
@@ -35,12 +40,15 @@ namespace Web_Api_Sample
                 //elegant handling of circular references
                 options.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
             });
+            services.AddSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseStaticFiles();
             app.UseMvc();
+            app.UseSwagger();
+            app.UseSwaggerUi();
         }
     }
 }

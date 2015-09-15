@@ -29,7 +29,14 @@ namespace Web_Api_Sample.Controllers
             await _context.SaveChangesAsync();
             return Redirect("/api/customer");
         }
-
+        [HttpGet]
+        [Route("DeleteAll")]
+        public async Task<IActionResult> DeleteAll()
+        {
+            await _context.Customers.ForEachAsync(c => _context.Customers.Remove(c));
+            await _context.SaveChangesAsync();
+            return Redirect("/api/customer");
+        }
 
         // GET: api/customer
         [HttpGet]
